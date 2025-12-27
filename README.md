@@ -1,7 +1,5 @@
 # 🏡 3D Oyun Sahnesi
 
-## 🎮 Demo
-
 [🚀 Canlı Demo'yu Deneyin](https://mervetlckn.github.io/3d-oyun-sahnesi/)
 
 
