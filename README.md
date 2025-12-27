@@ -40,7 +40,3 @@ Aşağıdaki dosyaları belirtilen içeriklerle oluşturun:
 - **CSS3** - Stil ve animasyonlar
 
 ---
-
-⭐ Bu projeyi beğendiyseniz yıldız vermeyi unutmayın!
-
-**Versiyon 2.0.0** | Son Güncelleme: Aralık 2025
