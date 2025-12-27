@@ -199,25 +199,28 @@ class Environment {
             color: CONFIG.HOUSE.DOOR_COLOR
         });
       // Kapı (pivot noktası sol kenarda)
-const door = new THREE.Mesh(doorGeometry, doorMaterial);
-door.position.set(
-  -CONFIG.HOUSE.DOOR_SIZE.width / 2,
-  CONFIG.HOUSE.DOOR_SIZE.height / 2,
-  0.02 // duvarın çok az önünde (z-fighting olmasın)
-);
-door.castShadow = true;
+        // Kapı grubu (pivot/menteşe) - ön duvar + sol kenar
+        const doorGroup = new THREE.Group();
+        doorGroup.position.set(
+        -CONFIG.HOUSE.BODY_SIZE.width / 2,   // sol duvar çizgisi
+          0,
+          CONFIG.HOUSE.BODY_SIZE.depth / 2    // ön duvar çizgisi
+        );
 
-// Kapı grubu (pivot için) - menteşe noktası ön duvarda
-const doorGroup = new THREE.Group();
-doorGroup.position.set(
-  CONFIG.HOUSE.DOOR_SIZE.width / 2,
-  0,
-  CONFIG.HOUSE.BODY_SIZE.depth / 2 + CONFIG.HOUSE.DOOR_SIZE.depth / 2
-);
-doorGroup.add(door);
-houseGroup.add(doorGroup);
+        // Kapı mesh'i (menteşeye göre sağa kaydırılmış)
+        const door = new THREE.Mesh(doorGeometry, doorMaterial);
+        door.position.set(
+          CONFIG.HOUSE.DOOR_SIZE.width / 2,   // menteşeden sağa
+          CONFIG.HOUSE.DOOR_SIZE.height / 2,  // zemine oturur
+          CONFIG.HOUSE.DOOR_SIZE.depth / 2 + 0.01 // duvarın biraz önünde
+        );
+        door.castShadow = true;
 
-        
+        doorGroup.add(door);
+        houseGroup.add(doorGroup);
+
+
+    
         // Pencereler
         this.createWindows(houseGroup);
         
