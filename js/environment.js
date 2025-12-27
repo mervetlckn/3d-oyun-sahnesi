@@ -198,23 +198,25 @@ class Environment {
         const doorMaterial = new THREE.MeshLambertMaterial({
             color: CONFIG.HOUSE.DOOR_COLOR
         });
-        const door = new THREE.Mesh(doorGeometry, doorMaterial);
-        door.position.set(
-            -CONFIG.HOUSE.DOOR_SIZE.width / 2,
-            CONFIG.HOUSE.DOOR_SIZE.height / 2,
-            CONFIG.HOUSE.BODY_SIZE.depth / 2 + CONFIG.HOUSE.DOOR_SIZE.depth / 2
-        );
-        door.castShadow = true;
-        
-        // Kapı grubu (pivot için)
-        const doorGroup = new THREE.Group();
-        doorGroup.position.set(
-            CONFIG.HOUSE.DOOR_SIZE.width / 2,
-            0,
-            CONFIG.HOUSE.BODY_SIZE.depth / 2
-        );
-        doorGroup.add(door);
-        houseGroup.add(doorGroup);
+      // Kapı (pivot noktası sol kenarda)
+const door = new THREE.Mesh(doorGeometry, doorMaterial);
+door.position.set(
+  -CONFIG.HOUSE.DOOR_SIZE.width / 2,
+  CONFIG.HOUSE.DOOR_SIZE.height / 2,
+  0.02 // duvarın çok az önünde (z-fighting olmasın)
+);
+door.castShadow = true;
+
+// Kapı grubu (pivot için) - menteşe noktası ön duvarda
+const doorGroup = new THREE.Group();
+doorGroup.position.set(
+  CONFIG.HOUSE.DOOR_SIZE.width / 2,
+  0,
+  CONFIG.HOUSE.BODY_SIZE.depth / 2 + CONFIG.HOUSE.DOOR_SIZE.depth / 2
+);
+doorGroup.add(door);
+houseGroup.add(doorGroup);
+
         
         // Pencereler
         this.createWindows(houseGroup);
