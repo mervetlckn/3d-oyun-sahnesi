@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Three.js ile geliştirilmiş profesyonel 3D oyun sahnesi">
+    <meta name="author" content="Your Name">
+    <title>3D Oyun Sahnesi | Interactive Environment</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loader">
+            <div class="spinner"></div>
+            <p class="loading-text">Yükleniyor...</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Menu -->
+    <div id="menuScreen" class="menu-screen">
+        <div class="menu-container">
+            <h1 class="menu-title">
+                <span class="title-icon">🏡</span>
+                3D Oyun Sahnesi
+            </h1>
+            <p class="menu-subtitle">Interactive 3D Environment</p>
+            
+            <div class="menu-buttons">
+                <button class="menu-button primary" id="startButton">
+                    <span class="button-icon">▶</span>
+                    Oyuna Başla
+                </button>
+                <button class="menu-button secondary" id="instructionsButton">
+                    <span class="button-icon">📖</span>
+                    Nasıl Oynanır?
+                </button>
+                <button class="menu-button secondary" id="settingsButton">
+                    <span class="button-icon">⚙️</span>
+                    Ayarlar
+                </button>
+            </div>
+
+            <div class="menu-footer">
+                <p>Versiyon 2.0 | Three.js r128</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Panel -->
+    <div id="settingsPanel" class="settings-panel hidden">
+        <div class="panel-content">
+            <h2>⚙️ Ayarlar</h2>
+            <div class="setting-item">
+                <label for="graphicsQuality">Grafik Kalitesi:</label>
+                <select id="graphicsQuality">
+                    <option value="low">Düşük</option>
+                    <option value="medium" selected>Orta</option>
+                    <option value="high">Yüksek</option>
+                </select>
+            </div>
+            <div class="setting-item">
+                <label for="mouseSensitivity">Fare Hassasiyeti:</label>
+                <input type="range" id="mouseSensitivity" min="1" max="10" value="5">
+                <span id="sensitivityValue">5</span>
+            </div>
+            <div class="setting-item">
+                <label>
+                    <input type="checkbox" id="shadowsEnabled" checked>
+                    Gölgeleri Aktif Et
+                </label>
+            </div>
+            <div class="setting-item">
+                <label>
+                    <input type="checkbox" id="fogEnabled" checked>
+                    Sis Efekti
+                </label>
+            </div>
+            <button class="menu-button primary" id="closeSettings">Kapat</button>
+        </div>
+    </div>
+
+    <!-- Game Canvas -->
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- HUD (Heads-Up Display) -->
+    <div id="hud" class="hud hidden">
+        <!-- Controls Info -->
+        <div class="hud-panel controls-panel">
+            <h3>🎮 Kontroller</h3>
+            <div class="control-item">
+                <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
+                <span>Hareket</span>
+            </div>
+            <div class="control-item">
+                <kbd>🖱️</kbd>
+                <span>Etrafına Bak</span>
+            </div>
+            <div class="control-item">
+                <kbd>E</kbd>
+                <span>Etkileşim</span>
+            </div>
+            <div class="control-item">
+                <kbd>ESC</kbd>
+                <span>Menü</span>
+            </div>
+            <div class="control-item">
+                <kbd>Shift</kbd>
+                <span>Koş</span>
+            </div>
+        </div>
+
+        <!-- Status Panel -->
+        <div class="hud-panel status-panel">
+            <div class="status-item">
+                <span class="status-label">Konum:</span>
+                <span id="playerPosition">X: 0, Z: 0</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Yakındaki:</span>
+                <span id="nearbyObject">-</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">FPS:</span>
+                <span id="fpsCounter">60</span>
+            </div>
+        </div>
+
+        <!-- Interaction Prompt -->
+        <div id="interactionPrompt" class="interaction-prompt hidden">
+            <kbd>E</kbd>
+            <span id="interactionText">Kapıyı Aç</span>
+        </div>
+
+        <!-- Minimap -->
+        <div class="minimap">
+            <canvas id="minimapCanvas" width="150" height="150"></canvas>
+        </div>
+    </div>
+
+    <!-- Notification System -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <!-- Pause Menu -->
+    <div id="pauseMenu" class="pause-menu hidden">
+        <div class="pause-content">
+            <h2>⏸️ Oyun Durduruldu</h2>
+            <button class="menu-button primary" id="resumeButton">Devam Et</button>
+            <button class="menu-button secondary" id="restartButton">Yeniden Başla</button>
+            <button class="menu-button secondary" id="mainMenuButton">Ana Menü</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/environment.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
